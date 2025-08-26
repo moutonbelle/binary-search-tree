@@ -1,18 +1,24 @@
 export default class Tree {
   constructor(data) {
+    if (data.length === 0) {
+      this.root = null;
+      return;
+    }
+
     data.sort((a, b) => a - b);
 
     // Deduplicate sorted array
-    for (let i = 0; i < data.length; i++) {
-      let j = i + 1;
-      if (j < data.length && data[j] === data[i]) {
-        let duplicates = 1;
-        for (j += 1; j < data.length && data[j] === data[i]; j++) duplicates++;
-        data.splice(i + 1, duplicates);
+    let dataUnique = [],
+      j = 0;
+    dataUnique[0] = data[0];
+    for (let i = 1; i < data.length; i++) {
+      if (data[i] !== dataUnique[j]) {
+        j++;
+        dataUnique[j] = data[i];
       }
     }
 
-    this.root = this.buildTree(data);
+    this.root = this.buildTree(dataUnique);
   }
 
   buildTree(data) {
