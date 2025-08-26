@@ -124,6 +124,15 @@ export default class Tree {
       }
     }
   }
+
+  levelOrderForEachRecursive(cb, q = [this.root]) {
+    if (q.length === 0 || q[0] === null) return;
+    if (q[0].left !== null) q.push(q[0].left);
+    if (q[0].right !== null) q.push(q[0].right);
+    cb(q[0]);
+    q.shift();
+    this.levelOrderForEachRecursive(cb, q);
+  }
 }
 
 class Node {
