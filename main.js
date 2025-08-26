@@ -14,13 +14,3 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
   }
 };
-
-prettyPrint(bst.root);
-
-bst.levelOrderForEach((node) => console.log(node.data, " "));
-console.log("-----");
-bst.inOrderForEach((node) => console.log(node.data, " "));
-console.log("-----");
-bst.preOrderForEach((node) => console.log(node.data, " "));
-console.log("-----");
-bst.postOrderForEach((node) => console.log(node.data, " "));

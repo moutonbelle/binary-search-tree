@@ -164,6 +164,21 @@ export default class Tree {
     this.postOrderForEach(cb, node.right);
     cb(node);
   }
+
+  height(data) {
+    let node = this.find(data);
+    if (node === null) return null;
+    return this.getHeight(node);
+  }
+
+  getHeight(node) {
+    if (node.left === null && node.right === null) return 0;
+    let leftHeight = 0,
+      rightHeight = 0;
+    if (node.left !== null) leftHeight = this.getHeight(node.left);
+    if (node.right !== null) rightHeight = this.getHeight(node.right);
+    return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
+  }
 }
 
 class Node {
