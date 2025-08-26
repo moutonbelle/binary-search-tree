@@ -21,8 +21,6 @@ function rands(n) {
 
 let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
-prettyPrint(bst.root);
-
 // console.log("BALANCED? ", bst.isBalanced());
 
 // let output = "";

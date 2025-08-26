@@ -225,7 +225,7 @@ export default class Tree {
     if (q[0].left !== null) q.push(q[0].left);
     if (q[0].right !== null) q.push(q[0].right);
     cb(q[0]);
-    q.shift();
+    q.splice(0, 1);
     this.levelOrderForEachRecursive(cb, q);
   }
 
@@ -284,15 +284,17 @@ export default class Tree {
   }
 
   isBalanced(node = this.root) {
-    if (node === null) return true;
-    if (node.left === null && node.right === null) return true;
-    let leftHeight = node.left === null ? 0 : this.getHeight(node.left),
-      rightHeight = node.right === null ? 0 : this.getHeight(node.right);
-    return (
-      Math.abs(leftHeight - rightHeight) <= 1 &&
-      this.isBalanced(node.left) &&
-      this.isBalanced(node.right)
-    );
+    let balanceHeight = (n) => {
+      if (n === null) return 0;
+      let leftHeight = balanceHeight(n.left);
+      if (leftHeight === -1) return -1;
+      let rightHeight = balanceHeight(n.right);
+      if (rightHeight === -1) return -1;
+      return Math.abs(leftHeight - rightHeight) > 1
+        ? -1
+        : Math.max(leftHeight, rightHeight) + 1;
+    };
+    return balanceHeight(node) === -1 ? false : true;
   }
 
   rebalance() {
