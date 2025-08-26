@@ -79,10 +79,16 @@ export default class Tree {
     if (curr === null) return false;
 
     // We found it, so now delete it
-    if (curr.left === null && curr.right === null) prev[path] = null;
-    else if (curr.left !== null && curr.right === null) prev[path] = curr.left;
-    else if (curr.left === null && curr.right !== null) prev[path] = curr.right;
-    else {
+    if (curr.left === null && curr.right === null) {
+      if (curr == this.root) this.root = null;
+      else prev[path] = null;
+    } else if (curr.left !== null && curr.right === null) {
+      if (curr === this.root) this.root = curr.left;
+      else prev[path] = curr.left;
+    } else if (curr.left === null && curr.right !== null) {
+      if (curr === this.root) this.root = curr.right;
+      else prev[path] = curr.right;
+    } else {
       // Node to delete has two children; find maximum of left branch
       let max = curr.left;
       let prevMax = curr;
