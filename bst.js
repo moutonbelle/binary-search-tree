@@ -192,6 +192,19 @@ export default class Tree {
       return 1 + this.getDepth(node, start.left);
     return 1 + this.getDepth(node, start.right);
   }
+
+  isBalanced(node = this.root) {
+    if (node === null) return true;
+    if (node.left === null && node.right === null) return true;
+    let leftHeight = 0,
+      rightHeight = 0;
+    if (node.left !== null) leftHeight = this.getHeight(node.left);
+    if (node.right !== null) rightHeight = this.getHeight(node.right);
+    let balanced = Math.abs(leftHeight - rightHeight) <= 1;
+    return (
+      balanced && this.isBalanced(node.left) && this.isBalanced(node.right)
+    );
+  }
 }
 
 class Node {
