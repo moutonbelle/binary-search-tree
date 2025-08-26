@@ -21,6 +21,10 @@ function rands(n) {
 
 let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
+let output = "";
+bst.levelOrderForEach((item) => (output += item.data + " "));
+console.log(output);
+
 // console.log("BALANCED? ", bst.isBalanced());
 
 // let output = "";

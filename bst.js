@@ -50,8 +50,9 @@ export default class Tree {
   }
 
   insertIterative(data) {
+    if (this.root === null) this.root = new Node(data);
     let curr = this.root;
-    while (curr !== null) {
+    while (1) {
       if (data === curr.data) return;
       if (data < curr.data) {
         if (curr.left !== null) curr = curr.left;
@@ -159,7 +160,7 @@ export default class Tree {
 
     // We found it, so now delete it
     if (curr.left === null && curr.right === null) {
-      if (curr == this.root) this.root = null;
+      if (curr === this.root) this.root = null;
       else prev[path] = null;
     } else if (curr.left !== null && curr.right === null) {
       if (curr === this.root) this.root = curr.left;
@@ -201,20 +202,13 @@ export default class Tree {
       throw new Error("No callback function provided");
 
     if (this.root === null) return;
-    cb(this.root);
 
-    let q = [],
-      i = 0;
-    if (this.root.left !== null) q.push(this.root.left);
-    if (this.root.right !== null) q.push(this.root.right);
+    let q = [this.root];
 
-    if (q.length > 0) {
-      while (i < q.length) {
-        cb(q[i]);
-        if (q[i].left !== null) q.push(q[i].left);
-        if (q[i].right !== null) q.push(q[i].right);
-        i++;
-      }
+    for (let i = 0; i < q.length; i++) {
+      cb(q[i]);
+      if (q[i].left) q.push(q[i].left);
+      if (q[i].right) q.push(q[i].right);
     }
   }
 
