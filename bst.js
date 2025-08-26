@@ -95,6 +95,16 @@ export default class Tree {
       prevMax[maxPath] = max.left;
     }
   }
+
+  find(data) {
+    let curr = this.root;
+    while (curr !== null) {
+      if (curr.data === data) return curr;
+      if (data < curr.data) curr = curr.left;
+      else if (data > curr.data) curr = curr.right;
+    }
+    return null;
+  }
 }
 
 class Node {
