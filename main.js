@@ -23,65 +23,65 @@ let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
 prettyPrint(bst.root);
 
-console.log("BALANCED? ", bst.isBalanced());
+// console.log("BALANCED? ", bst.isBalanced());
 
-let output = "";
-bst.levelOrderForEach((item) => {
-  output += item.data + " ";
-});
-console.log("LEVEL: ", output);
+// let output = "";
+// bst.levelOrderForEach((item) => {
+//   output += item.data + " ";
+// });
+// console.log("LEVEL: ", output);
 
-output = "";
-bst.preOrderForEach((item) => {
-  output += item.data + " ";
-});
-console.log("PRE: ", output);
+// output = "";
+// bst.preOrderForEach((item) => {
+//   output += item.data + " ";
+// });
+// console.log("PRE: ", output);
 
-output = "";
-bst.inOrderForEach((item) => {
-  output += item.data + " ";
-});
-console.log("IN: ", output);
+// output = "";
+// bst.inOrderForEach((item) => {
+//   output += item.data + " ";
+// });
+// console.log("IN: ", output);
 
-output = "";
-bst.postOrderForEach((item) => {
-  output += item.data + " ";
-});
-console.log("POST: ", output);
+// output = "";
+// bst.postOrderForEach((item) => {
+//   output += item.data + " ";
+// });
+// console.log("POST: ", output);
 
-bst.insert(805);
-bst.insert(870);
-bst.insert(990);
-bst.insert(991);
+// bst.insert(805);
+// bst.insert(870);
+// bst.insert(990);
+// bst.insert(991);
 
-prettyPrint(bst.root);
-console.log("BALANCED? ", bst.isBalanced());
+// prettyPrint(bst.root);
+// console.log("BALANCED? ", bst.isBalanced());
 
-bst.rebalance();
+// bst.rebalance();
 
-prettyPrint(bst.root);
-console.log("BALANCED? ", bst.isBalanced());
+// prettyPrint(bst.root);
+// console.log("BALANCED? ", bst.isBalanced());
 
-output = "";
-bst.levelOrderForEach((item) => {
-  output += item.data + " ";
-});
-console.log("LEVEL: ", output);
+// output = "";
+// bst.levelOrderForEach((item) => {
+//   output += item.data + " ";
+// });
+// console.log("LEVEL: ", output);
 
-output = "";
-bst.preOrderForEach((item) => {
-  output += item.data + " ";
-});
-console.log("PRE: ", output);
+// output = "";
+// bst.preOrderForEach((item) => {
+//   output += item.data + " ";
+// });
+// console.log("PRE: ", output);
 
-output = "";
-bst.inOrderForEach((item) => {
-  output += item.data + " ";
-});
-console.log("IN: ", output);
+// output = "";
+// bst.inOrderForEach((item) => {
+//   output += item.data + " ";
+// });
+// console.log("IN: ", output);
 
-output = "";
-bst.postOrderForEach((item) => {
-  output += item.data + " ";
-});
-console.log("POST: ", output);
+// output = "";
+// bst.postOrderForEach((item) => {
+//   output += item.data + " ";
+// });
+// console.log("POST: ", output);

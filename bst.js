@@ -31,12 +31,27 @@ export default class Tree {
     return newNode;
   }
 
+  insertRecurse(data, subtreeRoot) {
+    if (data === subtreeRoot.data) return;
+    else if (data < subtreeRoot.data) {
+      if (subtreeRoot.left === null) subtreeRoot.left = new Node(data);
+      else this.insertRecurse(data, subtreeRoot.left);
+    } else if (data > subtreeRoot.data) {
+      if (subtreeRoot.right === null) subtreeRoot.right = new Node(data);
+      else this.insertRecurse(data, subtreeRoot.right);
+    }
+  }
+
   insert(data) {
     if (this.root === null) {
       this.root = new Node(data);
       return;
     }
 
+    this.insertRecurse(data, this.root);
+  }
+
+  insertIterative(data) {
     let curr = this.root;
     while (curr !== null) {
       if (data === curr.data) return;
