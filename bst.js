@@ -96,8 +96,8 @@ export default class Tree {
     }
   }
 
-  find(data) {
-    let curr = this.root;
+  find(data, start = this.root) {
+    let curr = start;
     while (curr !== null) {
       if (curr.data === data) return curr;
       if (data < curr.data) curr = curr.left;
@@ -178,6 +178,19 @@ export default class Tree {
     if (node.left !== null) leftHeight = this.getHeight(node.left);
     if (node.right !== null) rightHeight = this.getHeight(node.right);
     return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
+  }
+
+  depth(data) {
+    let node = this.find(data);
+    if (node === null) return null;
+    return this.getDepth(node);
+  }
+
+  getDepth(node, start = this.root) {
+    if (start === node) return 0;
+    if (start.left !== null && this.find(node.data, start.left))
+      return 1 + this.getDepth(node, start.left);
+    return 1 + this.getDepth(node, start.right);
   }
 }
 
