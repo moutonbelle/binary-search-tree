@@ -16,3 +16,15 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 prettyPrint(bst.root);
+
+console.log(bst.isBalanced());
+bst.insert(321);
+bst.insert(320);
+bst.insert(319);
+
+prettyPrint(bst.root);
+console.log(bst.isBalanced());
+
+bst.rebalance();
+prettyPrint(bst.root);
+console.log(bst.isBalanced());

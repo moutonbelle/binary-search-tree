@@ -205,6 +205,12 @@ export default class Tree {
       balanced && this.isBalanced(node.left) && this.isBalanced(node.right)
     );
   }
+
+  rebalance() {
+    let data = [];
+    this.inOrderForEach((item) => data.push(item.data));
+    this.root = this.buildTree(data);
+  }
 }
 
 class Node {
