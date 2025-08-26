@@ -23,13 +23,6 @@ let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
 prettyPrint(bst.root);
 
-let nst = new Tree([]);
-
-nst.insert(7, 6, 9, 8, 12, 15);
-prettyPrint(nst.root);
-
-console.log(nst.depth(15), nst.depth(7), nst.depth(6), nst.depth(12));
-
 // console.log("BALANCED? ", bst.isBalanced());
 
 // let output = "";

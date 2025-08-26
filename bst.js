@@ -286,13 +286,12 @@ export default class Tree {
   isBalanced(node = this.root) {
     if (node === null) return true;
     if (node.left === null && node.right === null) return true;
-    let leftHeight = 0,
-      rightHeight = 0;
-    if (node.left !== null) leftHeight = this.getHeight(node.left);
-    if (node.right !== null) rightHeight = this.getHeight(node.right);
-    let balanced = Math.abs(leftHeight - rightHeight) <= 1;
+    let leftHeight = node.left === null ? 0 : this.getHeight(node.left),
+      rightHeight = node.right === null ? 0 : this.getHeight(node.right);
     return (
-      balanced && this.isBalanced(node.left) && this.isBalanced(node.right)
+      Math.abs(leftHeight - rightHeight) <= 1 &&
+      this.isBalanced(node.left) &&
+      this.isBalanced(node.right)
     );
   }
 
