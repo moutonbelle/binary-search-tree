@@ -19,7 +19,7 @@ function rands(n) {
   return result;
 }
 
-let bst = new Tree(rands(50));
+let bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
 prettyPrint(bst.root);
 

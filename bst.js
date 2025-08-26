@@ -21,14 +21,13 @@ export default class Tree {
     this.root = this.buildTree(dataUnique);
   }
 
-  buildTree(data) {
-    if (data.length === 0) return null;
-    if (data.length === 1) return new Node(data[0]);
+  buildTree(data, start = 0, end = data.length) {
+    if (start >= end) return null;
 
-    let mid = Math.floor(data.length / 2);
+    let mid = Math.floor((end - start) / 2) + start;
     let newNode = new Node(data[mid]);
-    newNode.left = this.buildTree(data.slice(0, mid));
-    newNode.right = this.buildTree(data.slice(mid + 1, data.length));
+    newNode.left = this.buildTree(data, start, mid);
+    newNode.right = this.buildTree(data, mid + 1, end);
     return newNode;
   }
 
