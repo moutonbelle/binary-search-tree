@@ -105,6 +105,25 @@ export default class Tree {
     }
     return null;
   }
+
+  levelOrderForEach(cb) {
+    if (this.root === null) return;
+    cb(this.root);
+
+    let q = [],
+      i = 0;
+    if (this.root.left !== null) q.push(this.root.left);
+    if (this.root.right !== null) q.push(this.root.right);
+
+    if (q.length > 0) {
+      while (i < q.length) {
+        cb(q[i]);
+        if (q[i].left !== null) q.push(q[i].left);
+        if (q[i].right !== null) q.push(q[i].right);
+        i++;
+      }
+    }
+  }
 }
 
 class Node {

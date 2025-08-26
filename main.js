@@ -16,3 +16,5 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 };
 
 prettyPrint(bst.root);
+
+bst.levelOrderForEach(console.log);
