@@ -43,12 +43,9 @@ export default class Tree {
   }
 
   insert(data) {
-    if (this.root === null) {
-      this.root = new Node(data);
-      return;
-    }
-
-    this.insertRecurse(data, this.root);
+    if (this.root === null) this.root = new Node(data);
+    else this.insertRecurse(data, this.root);
+    return this;
   }
 
   insertIterative(data) {
