@@ -28,8 +28,7 @@ let nst = new Tree([]);
 nst.insert(7, 6, 9, 8, 12, 15);
 prettyPrint(nst.root);
 
-console.log(bst.deleteItem(67));
-prettyPrint(bst.root);
+console.log(nst.depth(15), nst.depth(7), nst.depth(6), nst.depth(12));
 
 // console.log("BALANCED? ", bst.isBalanced());
 

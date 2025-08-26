@@ -271,17 +271,16 @@ export default class Tree {
     return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
   }
 
-  depth(data) {
-    let node = this.find(data);
-    if (node === null) return null;
-    return this.getDepth(node);
-  }
-
-  getDepth(node, start = this.root) {
-    if (start === node) return 0;
-    if (start.left !== null && this.find(node.data, start.left))
-      return 1 + this.getDepth(node, start.left);
-    return 1 + this.getDepth(node, start.right);
+  depth(data, curr = this.root) {
+    if (curr === null) return null;
+    else if (data === curr.data) return 0;
+    else if (data < curr.data) {
+      let leftDepth = this.depth(data, curr.left);
+      return leftDepth === null ? null : leftDepth + 1;
+    } else if (data > curr.data) {
+      let rightDepth = this.depth(data, curr.right);
+      return rightDepth === null ? null : rightDepth + 1;
+    }
   }
 
   isBalanced(node = this.root) {
