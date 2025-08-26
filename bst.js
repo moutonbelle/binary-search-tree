@@ -70,7 +70,73 @@ export default class Tree {
     }
   }
 
+  // Handle special case of root; if not root, explore subtrees recursively
   deleteItem(data) {
+    if (this.root === null) return false;
+    else if (data === this.root.data) return this.deleteRoot();
+    else if (data < this.root.data)
+      return this.deleteItemFromSubtree(data, this.root, "left");
+    else if (data > this.root.data)
+      return this.deleteItemFromSubtree(data, this.root, "right");
+  }
+
+  // Explore subtrees recursively
+  deleteItemFromSubtree(data, parent, direction) {
+    let target = parent[direction];
+    if (target === null) return false;
+    if (data === target.data) return this.deleteNode(parent, direction);
+    if (data < target.data)
+      return this.deleteItemFromSubtree(data, target, "left");
+    if (data > target.data)
+      return this.deleteItemFromSubtree(data, target, "right");
+  }
+
+  // Special handling for when node to be deleted is root (no parent)
+  deleteRoot() {
+    if (this.root.left === null && this.root.right === null) this.root = null;
+    else if (this.root.left !== null && this.root.right === null)
+      this.root = this.root.left;
+    else if (this.root.left === null && this.root.right !== null)
+      this.root = this.root.right;
+    else if (this.root.left !== null && this.root.right !== null) {
+      this.root.data = this.min(this.root);
+    }
+    return true;
+  }
+
+  // General case for deleting a node, specified by parent node and direction from parent
+  deleteNode(parent, direction) {
+    let target = parent[direction];
+    if (target.left === null && target.right === null) parent[direction] = null;
+    else if (target.left !== null && target.right === null)
+      parent[direction] = target.left;
+    else if (target.left === null && target.right !== null)
+      parent[direction] = target.right;
+    else if (target.left !== null && target.right !== null) {
+      target.data = this.min(target);
+    }
+    return true;
+  }
+
+  // Find the minimum value from right subranch of tree, delete node containing it, return the value
+  // (used to implement deletion of a node with two children, see deleteNode())
+  min(target) {
+    let parent = target;
+    let direction = "right";
+    let curr = parent[direction];
+
+    while (curr.left) {
+      parent = curr;
+      direction = "left";
+      curr = curr.left;
+    }
+
+    let data = curr.data;
+    this.deleteNode(parent, direction);
+    return data;
+  }
+
+  deleteItemIterative(data) {
     // Find the item, keeping a trailing pointer
     let curr = this.root;
     let prev = curr;
