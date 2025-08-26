@@ -51,6 +51,50 @@ export default class Tree {
       }
     }
   }
+
+  deleteItem(data) {
+    // Find the item, keeping a trailing pointer
+    let curr = this.root;
+    let prev = curr;
+    let path = "";
+    while (curr !== null) {
+      if (curr.data === data) break;
+      else if (data < curr.data) {
+        prev = curr;
+        path = "left";
+        curr = curr.left;
+      } else if (data > curr.data) {
+        prev = curr;
+        path = "right";
+        curr = curr.right;
+      }
+    }
+
+    // If we didn't find it return false
+    if (curr === null) return false;
+
+    // We found it, so now delete it
+    if (curr.left === null && curr.right === null) prev[path] = null;
+    else if (curr.left !== null && curr.right === null) prev[path] = curr.left;
+    else if (curr.left === null && curr.right !== null) prev[path] = curr.right;
+    else {
+      // Node to delete has two children; find maximum of left branch
+      let max = curr.left;
+      let prevMax = curr;
+      let maxPath = "left";
+      while (max.right !== null) {
+        prevMax = max;
+        max = max.right;
+        maxPath = "right";
+      }
+
+      // Replace node to be deleted with maximum of left branch
+      curr.data = max.data;
+
+      // Delete max of left branch, now that data has been moved
+      prevMax[maxPath] = max.left;
+    }
+  }
 }
 
 class Node {
