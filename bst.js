@@ -107,6 +107,8 @@ export default class Tree {
   }
 
   levelOrderForEach(cb) {
+    if (typeof cb !== "function")
+      throw new Error("No callback function provided");
     if (this.root === null) return;
     cb(this.root);
 
@@ -126,12 +128,41 @@ export default class Tree {
   }
 
   levelOrderForEachRecursive(cb, q = [this.root]) {
+    if (typeof cb !== "function")
+      throw new Error("No callback function provided");
     if (q.length === 0 || q[0] === null) return;
     if (q[0].left !== null) q.push(q[0].left);
     if (q[0].right !== null) q.push(q[0].right);
     cb(q[0]);
     q.shift();
     this.levelOrderForEachRecursive(cb, q);
+  }
+
+  inOrderForEach(cb, node = this.root) {
+    if (typeof cb !== "function")
+      throw new Error("No callback function provided");
+    if (node === null) return;
+    this.inOrderForEach(cb, node.left);
+    cb(node);
+    this.inOrderForEach(cb, node.right);
+  }
+
+  preOrderForEach(cb, node = this.root) {
+    if (typeof cb !== "function")
+      throw new Error("No callback function provided");
+    if (node === null) return;
+    cb(node);
+    this.preOrderForEach(cb, node.left);
+    this.preOrderForEach(cb, node.right);
+  }
+
+  postOrderForEach(cb, node = this.root) {
+    if (typeof cb !== "function")
+      throw new Error("No callback function provided");
+    if (node === null) return;
+    this.postOrderForEach(cb, node.left);
+    this.postOrderForEach(cb, node.right);
+    cb(node);
   }
 }
 
