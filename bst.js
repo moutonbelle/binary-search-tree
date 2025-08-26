@@ -50,18 +50,20 @@ export default class Tree {
   }
 
   insertIterative(data) {
-    if (this.root === null) this.root = new Node(data);
+    if (this.root === null) {
+      this.root = new Node(data);
+      return;
+    }
     let curr = this.root;
-    while (1) {
+    while (true) {
       if (data === curr.data) return;
-      if (data < curr.data) {
+      else if (data < curr.data) {
         if (curr.left !== null) curr = curr.left;
         else {
           curr.left = new Node(data);
           return;
         }
-      }
-      if (data > curr.data) {
+      } else if (data > curr.data) {
         if (curr.right !== null) curr = curr.right;
         else {
           curr.right = new Node(data);
