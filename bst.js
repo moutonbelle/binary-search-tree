@@ -42,9 +42,10 @@ export default class Tree {
     }
   }
 
-  insert(data) {
+  insert(data, ...rest) {
     if (this.root === null) this.root = new Node(data);
     else this.insertRecurse(data, this.root);
+    rest.forEach((item) => this.insertRecurse(item, this.root));
     return this;
   }
 

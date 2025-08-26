@@ -25,7 +25,7 @@ prettyPrint(bst.root);
 
 let nst = new Tree([]);
 
-nst.insert(7).insert(6).insert(9);
+nst.insert(7, 6, 9, 12, 15);
 prettyPrint(nst.root);
 
 // console.log("BALANCED? ", bst.isBalanced());
