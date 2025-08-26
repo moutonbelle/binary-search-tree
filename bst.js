@@ -199,6 +199,7 @@ export default class Tree {
   levelOrderForEach(cb) {
     if (typeof cb !== "function")
       throw new Error("No callback function provided");
+
     if (this.root === null) return;
     cb(this.root);
 
@@ -267,7 +268,7 @@ export default class Tree {
       rightHeight = 0;
     if (node.left !== null) leftHeight = this.getHeight(node.left);
     if (node.right !== null) rightHeight = this.getHeight(node.right);
-    return leftHeight > rightHeight ? leftHeight + 1 : rightHeight + 1;
+    return (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
   }
 
   depth(data) {
